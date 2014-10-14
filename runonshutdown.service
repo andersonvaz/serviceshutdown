@@ -1,0 +1,16 @@
+[Unit]
+Description=RUNONSHUTDOWN
+After=basic.target
+Before=umount.target shutdown.target reboot.target halt.target poweroff.target
+
+[Service]
+Type=oneshot
+#Type=forking
+User=root
+ExecStart=/bin/runonshutdown.sh start
+ExecStop=/bin/runonshutdown.sh stop
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
